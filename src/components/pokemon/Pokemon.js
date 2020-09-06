@@ -96,17 +96,20 @@ export default class Pokemon extends Component {
 		})
 		.join(', ');
 
-		const evs = pokemonRes.data.stats.filter(stat => {
+		const evs = pokemonRes.data.stats
+		.filter(stat => {
 			if (stat.effort > 0){
 				return true;
 			}
 				return false;
 			})
 			.map(stat =>{
-				return `${stat.effort} ${stat.stat.name}.toLowerCase()
-				.split('-')
-				.map(s => s.charAt(0).toUpperCase() + s.substring(1))
-				.join(' ')`;
+				return `${stat.effort} ${stat.stat.name
+					.toLowerCase()
+					.split('-')
+					.map(s => s.charAt(0).toUpperCase() + s.substring(1))
+					.join(' ')
+				}`				
 			})
 			.join(', ');
 
@@ -409,6 +412,9 @@ export default class Pokemon extends Component {
 							</div>
 						</div>
 					</div>
+						<div className='card-footer text-muted'>
+							Data <a href='https://pokeapi.co/' target='blank' className='card-link'>PokeAPI.co</a>
+						</div>
 				</div>
 			</div>			
 		);
